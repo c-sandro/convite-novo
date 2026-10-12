@@ -1,0 +1,238 @@
+/* fontes custom */
+@font-face{
+    font-family: 'New Rocker';
+    src: url(../resources/fonts/creepy-font.woff2) format('woff2');
+}
+
+/* alinhamento de tudo */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #000000;
+
+  font-family: 'New Rocker', Arial, Helvetica, sans-serif;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* container do papel */
+.paper-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* papel */
+.floating-paper {
+  width: 200px; 
+  height: auto;
+  transform: rotate(3deg);
+
+  cursor: pointer;
+  pointer-events: none; 
+
+  opacity: 0;
+
+  transition: opacity 0.8s ease-in-out,
+    width 0.8s ease-in-out,
+    transform 2s ease-out;
+}
+/* classe ativada via js */
+.floating-paper.visible {
+  opacity: 0.75;
+  pointer-events: auto;
+  animation: floatAnimation 6s ease-in-out infinite;
+}
+.floating-paper.visible:hover {
+  opacity: 0.90;
+  width: 210px; 
+  animation: floatAnimation 6s ease-in-out infinite;
+}
+
+/* fundo */
+.bg-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background-image: url('../resources/backgrounds/invitation.png');
+  background-repeat: repeat;
+  background-size: 200%;
+
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+
+  transition: opacity 5s ease-in-out;
+  transition-delay: 2s;
+}
+/* classe ativada via js */
+.bg-image.visible {
+  opacity: 1;
+  animation: continuousScroll 40s linear infinite;
+}
+
+/* texto */
+.text-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  pointer-events: none;
+}
+
+.text-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: crimson;
+  font-size: 2rem;
+  letter-spacing: 1px;
+
+  text-shadow: 
+    0 0 20px rgba(220, 20, 60, 0.8),
+    0 0 30px rgba(220, 20, 60, 0.5);
+
+  opacity: 0;
+  transform: translateY(15px);
+
+  transition: opacity 1.5s ease, transform 1.5s ease;
+}
+/* classe ativada via js */
+.text-line.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* variantes */
+.text-line.header-text-line{
+  transform: translateY(15px) translateX(-60px);
+  font-size: 4rem;
+}
+.text-line.header-text-line.visible {
+  opacity: 1;
+  transform: translateY(0) translateX(-60px);
+}
+
+.text-line.big-text-line{
+  font-size: 2.5rem;
+}
+
+.text-line.padding-text-line{
+  padding-bottom: 2rem;
+}
+
+/* específico da ultima linha*/
+.text-line.clickable-line{
+  color: darkorchid;
+  text-shadow: 
+    0 0 20px rgba(153, 50, 204, 0.8),
+    0 0 30px rgba(153, 50, 204, 0.5);
+
+  transition: opacity 1.5s ease, transform 1.5s ease, text-shadow 1.5s ease;
+}
+.text-line.clickable-line:hover{
+  text-shadow: 
+    0 0 20px rgba(153, 50, 204, 1),
+    0 0 40px rgba(153, 50, 204, 0.8),
+    0 0 80px rgba(153, 50, 204, 0.6),
+    0 0 160px rgba(153, 50, 204, 0.4);
+}
+.text-line.clickable-line.visible {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+/* icones no texto */
+.line-icon {
+  width: auto;
+  object-fit: contain;
+  pointer-events: none;
+}
+.blood-icon{
+  height: 1.5em;
+  z-index: -1;
+  transform: translateX(40px) translateY(-25px); 
+}
+.spider-icon{
+  height: 1.8em;
+  z-index: 1;
+  transform: translateX(60px) translateY(-20px); 
+
+  filter: drop-shadow(0 0 20px rgba(153, 50, 204, 0.8)),
+  drop-shadow(0 0 30px rgba(153, 50, 204, 0.5));
+}
+.spider-icon.flip {
+  transform: scaleX(-1)
+    translateX(70px) translateY(-10px)
+    rotateZ(15deg);
+}
+
+@keyframes floatAnimation {
+  0% {
+    transform: translateY(-70px) rotate(3deg);
+    animation-timing-function: linear;
+  }
+
+  30% {
+    transform: translateY(-100px) rotate(2.6deg);
+    animation-timing-function: ease-out;
+  }
+
+  50% {
+    transform: translateY(-112px) rotate(2deg);
+    animation-timing-function: linear;
+  }
+
+  80% {
+    transform: translateY(-82px) rotate(2.4deg);
+    animation-timing-function: ease-out;
+  }
+
+  100% {
+    transform: translateY(-70px) rotate(3deg);
+  }
+}
+
+@keyframes paperZoomOut {
+  0% {
+    opacity: 0.90;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes continuousScroll {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 200% 200%;
+  }
+}

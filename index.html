@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>cemitério.</title>
+    
+    <link rel="shortcut icon" href="resources/icons/skull-icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body>
+
+    <!-- fundo -->
+    <div class="bg-image" id="bg-image"></div>
+
+    <!-- vídeo overlay de chuva -->
+    <video class="rain-overlay" id="rain-overlay" loop muted playsinline>
+        <source src="resources/video/raindrops.mp4" type="video/mp4">
+    </video>
+
+    <!-- seta -->
+    <img src="resources/icons/arrow-icon.png" class="arrow-btn" id="arrow-btn" alt="Avançar">
+
+    <!-- folha (última tela) -->
+    <img src="resources/bloody-paper.png" class="paper-btn" id="paper-btn" alt="Papel">
+
+    <!-- texto -->
+    <div class="text-container" id="text-container">
+        <h4 class="unclickable-text">
+            Use fones de ouvido, por favor.
+        </h4>
+        <h6 class="unclickable-text unclickable-text-alt">
+            Se estiver no celular, use-o na horizontal.
+        </h6>
+        <h1 class="clickable-text" id="clickable-text">
+            CLIQUE PARA INICIAR
+        </h1>
+    </div>
+
+    
+    <script src="scripts/main.js"></script>
+</body>
+
+</html>
