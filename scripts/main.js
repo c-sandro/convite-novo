@@ -89,8 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const scale = renderWidth / IMG_WIDTH;
 
-        console.log(scale);
-
         const currentWidth = currentScene.arrowWidth * scale;
         const aspect = (arrowBtn.naturalWidth && arrowBtn.naturalHeight) 
             ? (arrowBtn.naturalHeight / arrowBtn.naturalWidth) 
@@ -220,7 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (nextScene) {
             bgImage.style.backgroundImage = `url('${nextScene.bg}')`;
 
-            await wait(500);
+            await wait(100);
             bgImage.classList.add('fade-in');
 
             if (nextScene.hasArrow !== false) {
@@ -250,16 +248,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function fadeOutAudio(audio, duration = 2000) {
         return new Promise((resolve) => {
-            const startVolume = audio.volume;
+            let currentVol = 0.7; 
             const interval = 50; 
             const steps = duration / interval;
-            const stepAmount = startVolume / steps;
+            const stepAmount = currentVol / steps;
 
             const fadeInterval = setInterval(() => {
-                if (audio.volume - stepAmount > 0) {
-                    audio.volume -= stepAmount;
+                currentVol -= stepAmount;
+                if (currentVol > 0) {
+                    try { audio.volume = currentVol; } catch(e) {}
                 } else {
-                    audio.volume = 0;
+                    try { audio.volume = 0; } catch(e) {}
                     audio.pause(); 
                     clearInterval(fadeInterval);
                     resolve();
@@ -275,7 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
         await wait(2000);
         bgImage.classList.remove('fade-in');
 
-        await Promise.all([
+        await Promise.race([
             fadeOutAudio(rainAudio, 4000),
             wait(5500)
         ]);
