@@ -205,6 +205,46 @@ html, body {
   animation: blinkPaper 1.2s ease-in-out infinite alternate;
 }
 
+/* para celulares */
+@media (max-width: 768px) {
+  /* reduz tamanho geral da fonte do container */
+  .text-container {
+    font-size: 2rem;
+    padding: 0 1.5rem;
+  }
+
+  /* ajusta o texto do topo */
+  .unclickable-text {
+    font-size: 1.8rem;
+  }
+
+  /* reduz a margem gigante que empurrava o botão para fora da tela */
+  .unclickable-text-alt {
+    padding-bottom: 2.5rem;
+    font-size: 1.4rem;
+  }
+
+  /* ajusta o botão principal */
+  .clickable-text {
+    font-size: 2.2rem;
+    text-align: center;
+  }
+}
+
+/* celulares pequenos ou deitados */
+@media (max-height: 500px) and (orientation: landscape) {
+  .text-container {
+    font-size: 1.4rem;
+  }
+
+  .unclickable-text-alt {
+    padding-bottom: 1rem;
+  }
+
+  .clickable-text {
+    font-size: 1.8rem;
+  }
+}
 
 /* animações */
 @keyframes fadeInText {

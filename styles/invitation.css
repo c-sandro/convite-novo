@@ -191,6 +191,65 @@ html, body {
     rotateZ(15deg);
 }
 
+/* para celulares */
+@media (max-width: 768px) {
+  /* rolagem caso as linhas do convite excedam a altura da tela */
+  .text-container {
+    padding: 2rem 1rem;
+    overflow-y: auto;
+    pointer-events: auto; /* permite rolar com o toque no celular */
+    justify-content: flex-start; /* evita que o topo do texto seja cortado */
+  }
+
+  /* papel menor */
+  .floating-paper {
+    width: 150px;
+  }
+  .floating-paper.visible:hover {
+    width: 160px;
+  }
+
+  /* tamanho padronizado das linhas no celular */
+  .text-line {
+    font-size: 1.15rem;
+    letter-spacing: 0.5px;
+  }
+
+  /* remove o deslocamento de -60px que descentralizava o título no celular */
+  .text-line.header-text-line {
+    font-size: 2.2rem;
+    transform: translateY(15px) translateX(0);
+  }
+
+  .text-line.header-text-line.visible {
+    transform: translateY(0) translateX(0);
+  }
+
+  .text-line.big-text-line {
+    font-size: 1.35rem;
+  }
+
+  .text-line.padding-text-line {
+    padding-bottom: 1rem;
+  }
+
+  /* reajuste dos ícones para não vazarem nas bordas da tela */
+  .blood-icon {
+    height: 1.2em;
+    transform: translateX(10px) translateY(-10px);
+  }
+
+  .spider-icon {
+    height: 1.3em;
+    transform: translateX(10px) translateY(-5px);
+  }
+
+  .spider-icon.flip {
+    transform: scaleX(-1) translateX(10px) translateY(-5px) rotateZ(15deg);
+  }
+}
+
+/* animações*/
 @keyframes floatAnimation {
   0% {
     transform: translateY(-70px) rotate(3deg);
