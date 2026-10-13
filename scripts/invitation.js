@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 setTimeout(() => {
                     line.classList.add('visible');
-                }, 1);
+                }, delayTotal);
             });
         });
     }
