@@ -13,7 +13,7 @@
 
 html, body {
   width: 100%;
-  height: 100%;
+  height: 100dvh;
   overflow: hidden;
   background-color: #000000;
 
@@ -30,12 +30,12 @@ html, body {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
+  height: 100dvh;
 }
 
 /* papel */
 .floating-paper {
-  width: 200px; 
+  width: clamp(130px, 20vw, 210px);
   height: auto;
   transform: rotate(3deg);
 
@@ -56,8 +56,7 @@ html, body {
 }
 .floating-paper.visible:hover {
   opacity: 0.90;
-  width: 210px; 
-  animation: floatAnimation 6s ease-in-out infinite;
+  width: clamp(140px, 25vw, 220px); 
 }
 
 /* fundo */
@@ -66,7 +65,7 @@ html, body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100dvh;
 
   background-image: url('../resources/backgrounds/invitation.png');
   background-repeat: repeat;
@@ -91,7 +90,7 @@ html, body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100dvh;
   z-index: 10;
 
   display: flex;
@@ -109,7 +108,7 @@ html, body {
   justify-content: center;
 
   color: crimson;
-  font-size: 2rem;
+  font-size: clamp(1.1rem, 2.5vw, 2rem);
   letter-spacing: 1px;
 
   text-shadow: 
@@ -129,16 +128,18 @@ html, body {
 
 /* variantes */
 .text-line.header-text-line{
-  transform: translateY(15px) translateX(-60px);
-  font-size: 4rem;
+  padding-top: 1rem;
+  
+  transform: translateY(15px) translateX(-4vw);
+  font-size: clamp(2rem, 6vw, 4rem);
 }
 .text-line.header-text-line.visible {
   opacity: 1;
-  transform: translateY(0) translateX(-60px);
+  transform: translateY(0) translateX(-4vw);
 }
 
 .text-line.big-text-line{
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
 }
 
 .text-line.padding-text-line{
@@ -166,6 +167,22 @@ html, body {
   cursor: pointer;
 }
 
+.site-footer {
+  width: 100%;
+  margin-top: auto;
+
+  font-size: clamp(0.65rem, 1.8vw, 0.85rem);
+  padding-top: 2rem;
+  padding-bottom: 0.8rem;
+
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+}
+.site-footer.text-line.visible {
+  opacity: .8;
+}
+
 /* icones no texto */
 .line-icon {
   width: auto;
@@ -175,19 +192,19 @@ html, body {
 .blood-icon{
   height: 1.5em;
   z-index: -1;
-  transform: translateX(40px) translateY(-25px); 
+  transform: translateX(0.6em) translateY(-0.4em);
 }
 .spider-icon{
   height: 1.8em;
   z-index: 1;
-  transform: translateX(60px) translateY(-20px); 
+  transform: translateX(1.2em) translateY(-0.3em);
 
   filter: drop-shadow(0 0 20px rgba(153, 50, 204, 0.8)),
   drop-shadow(0 0 30px rgba(153, 50, 204, 0.5));
 }
 .spider-icon.flip {
   transform: scaleX(-1)
-    translateX(70px) translateY(-10px)
+    translateX(1.1em) translateY(-0.15em)
     rotateZ(15deg);
 }
 
@@ -195,115 +212,103 @@ html, body {
 @media (max-width: 768px) {
   /* rolagem caso as linhas do convite excedam a altura da tela */
   .text-container {
-    padding: 2rem 1rem;
     overflow-y: auto;
-    pointer-events: auto; /* permite rolar com o toque no celular */
+    pointer-events: none; /* permite rolar com o toque no celular */
     justify-content: flex-start; /* evita que o topo do texto seja cortado */
   }
-
-  /* papel menor */
-  .floating-paper {
-    width: 150px;
-  }
-  .floating-paper.visible:hover {
-    width: 160px;
+  .text-container.active {
+    pointer-events: auto;
   }
 
-  /* tamanho padronizado das linhas no celular */
-  .text-line {
-    font-size: 1.15rem;
-    letter-spacing: 0.5px;
+  .text-line{
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
-
-  /* remove o deslocamento de -60px que descentralizava o título no celular */
   .text-line.header-text-line {
-    font-size: 2.2rem;
-    transform: translateY(15px) translateX(-20px);
+    transform: translateY(15px) translateX(-5vw);
   }
-
   .text-line.header-text-line.visible {
-    transform: translateY(0) translateX(0);
+    transform: translateY(0) translateX(-5vw);
   }
-
-  .text-line.big-text-line {
-    font-size: 1.35rem;
-  }
-
   .text-line.padding-text-line {
-    padding-bottom: 1rem;
+    padding-bottom: 1.5rem;
   }
 
-  /* reajuste dos ícones para não vazarem nas bordas da tela */
-  .blood-icon {
-    height: 1.2em;
-    transform: translateX(10px) translateY(-10px);
+  .spider-icon{
+    transform: translateX(3.2em) translateY(0.9em);
   }
-
-  .spider-icon {
-    height: 1.3em;
-    transform: translateX(10px) translateY(-5px);
-  }
-
   .spider-icon.flip {
-    transform: scaleX(-1) translateX(10px) translateY(-5px) rotateZ(15deg);
+    transform: scaleX(-1)
+      translateX(2.2em) translateY(-1.5em)
+      rotateZ(15deg);
   }
+
 }
 
 /* celulares pequenos ou deitados */
 @media (max-height: 500px) and (orientation: landscape) {
   .text-container {
-    /* Libera a rolagem por toque na tela */
+    /* libera a rolagem por toque na tela */
     overflow-y: auto;
-    pointer-events: auto;
+    pointer-events: none;
 
-    /* Muda o alinhamento para o topo para não cortar a primeira linha */
+    /* muda o alinhamento para o topo para não cortar a primeira linha */
     justify-content: flex-start;
-    padding-top: 3rem;
     padding-bottom: 3rem;
   }
-
-  /* Papel flutuante inicial menor para caber na tela deitada */
-  .floating-paper {
-    width: 120px;
+  .text-container.active {
+    pointer-events: auto;
   }
 
-  /* Redução de fontes para caber melhor em telas baixas */
-  .text-line {
-    font-size: 1rem;
-    letter-spacing: 0.5px;
-  }
-
-  .text-line.header-text-line {
-    font-size: 1.8rem;
-    transform: translateY(15px) translateX(0);
-  }
-
-  .text-line.header-text-line.visible {
-    transform: translateY(0) translateX(0);
-  }
-
-  .text-line.big-text-line {
-    font-size: 1.15rem;
-  }
-
-  /* Reduz os espaçamentos grandes entre seções */
   .text-line.padding-text-line {
     padding-bottom: 0.6rem;
   }
 
-  /* Ajuste dos ícones */
-  .blood-icon {
-    height: 1.1em;
-    transform: translateX(10px) translateY(-5px);
+  .floating-paper {
+    width: auto;
+    max-height: 40vh; 
+  }
+  .floating-paper.visible {
+    animation: floatAnimationLandscape 5s ease-in-out infinite;
+  }
+  .floating-paper.visible:hover {
+    width: auto; 
+    opacity: 0.90;
   }
 
-  .spider-icon {
-    height: 1.1em;
-    transform: translateX(10px) translateY(-5px);
+  .spider-icon{
+    transform: translateX(3em) translateY(-0.4em);
   }
-
   .spider-icon.flip {
-    transform: scaleX(-1) translateX(10px) translateY(-5px) rotateZ(15deg);
+    transform: scaleX(-1)
+      translateX(2.8em) translateY(-0.6em)
+      rotateZ(15deg);
+  }
+}
+
+@keyframes floatAnimationLandscape {
+  0% {
+    transform: translateY(-10px) rotate(3deg);
+    animation-timing-function: linear;
+  }
+
+  30% {
+    transform: translateY(-53px) rotate(2.6deg);
+    animation-timing-function: ease-out;
+  }
+
+  50% {
+    transform: translateY(-72px) rotate(2deg);
+    animation-timing-function: linear;
+  }
+
+  80% {
+    transform: translateY(-29px) rotate(2.4deg);
+    animation-timing-function: ease-out;
+  }
+
+  100% {
+    transform: translateY(-10px) rotate(3deg);
   }
 }
 

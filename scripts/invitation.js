@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const floatingPaper = document.getElementById('floating-paper');
     const paperWrapper = document.getElementById('paper-wrapper');
     const bgImage = document.getElementById('bg-image');
+    const textContainer = document.getElementById('text-container');
     const textLines = document.querySelectorAll('.text-line');
     const clickableLine = document.getElementById('clickable-line');
 
@@ -27,7 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             void floatingPaper.offsetHeight;
 
-            floatingPaper.style.width = '210px';
             floatingPaper.style.transition = 'opacity 0.75s ease-in-out, transform 0.75s ease-in-out';
             floatingPaper.style.opacity = '0';
             floatingPaper.style.transform = `${currentTransform} scale(1.2)`;
@@ -40,6 +40,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 bgImage.classList.add('visible');
             }
 
+            if (textContainer) {
+                textContainer.classList.add('active');
+            }
+
             await wait(2500);
             organAudio.play().catch(e => console.log(e));
 
@@ -50,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 setTimeout(() => {
                     line.classList.add('visible');
-                }, delayTotal);
+                }, 1);
             });
         });
     }

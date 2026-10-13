@@ -89,6 +89,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const scale = renderWidth / IMG_WIDTH;
 
+        console.log(scale);
+
         const currentWidth = currentScene.arrowWidth * scale;
         const aspect = (arrowBtn.naturalWidth && arrowBtn.naturalHeight) 
             ? (arrowBtn.naturalHeight / arrowBtn.naturalWidth) 
