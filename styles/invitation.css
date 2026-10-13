@@ -117,6 +117,8 @@ html, body {
 
   opacity: 0;
   transform: translateY(15px);
+  -webkit-transform: translateY(15px);
+  will-change: opacity, transform;
 
   transition: opacity 1.5s ease, transform 1.5s ease;
 }
@@ -213,6 +215,7 @@ html, body {
   /* rolagem caso as linhas do convite excedam a altura da tela */
   .text-container {
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     pointer-events: none; /* permite rolar com o toque no celular */
     justify-content: flex-start; /* evita que o topo do texto seja cortado */
   }
@@ -286,32 +289,6 @@ html, body {
   }
 }
 
-@keyframes floatAnimationLandscape {
-  0% {
-    transform: translateY(-10px) rotate(3deg);
-    animation-timing-function: linear;
-  }
-
-  30% {
-    transform: translateY(-53px) rotate(2.6deg);
-    animation-timing-function: ease-out;
-  }
-
-  50% {
-    transform: translateY(-72px) rotate(2deg);
-    animation-timing-function: linear;
-  }
-
-  80% {
-    transform: translateY(-29px) rotate(2.4deg);
-    animation-timing-function: ease-out;
-  }
-
-  100% {
-    transform: translateY(-10px) rotate(3deg);
-  }
-}
-
 /* animações*/
 @keyframes floatAnimation {
   0% {
@@ -339,6 +316,32 @@ html, body {
   }
 }
 
+@keyframes floatAnimationLandscape {
+  0% {
+    transform: translateY(-10px) rotate(3deg);
+    animation-timing-function: linear;
+  }
+
+  30% {
+    transform: translateY(-53px) rotate(2.6deg);
+    animation-timing-function: ease-out;
+  }
+
+  50% {
+    transform: translateY(-72px) rotate(2deg);
+    animation-timing-function: linear;
+  }
+
+  80% {
+    transform: translateY(-29px) rotate(2.4deg);
+    animation-timing-function: ease-out;
+  }
+
+  100% {
+    transform: translateY(-10px) rotate(3deg);
+  }
+}
+
 @keyframes paperZoomOut {
   0% {
     opacity: 0.90;
@@ -353,8 +356,21 @@ html, body {
 @keyframes continuousScroll {
   0% {
     background-position: 0 0;
+    opacity: 1;
   }
   100% {
     background-position: 200% 200%;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes continuousScroll {
+  0% {
+    background-position: 0 0;
+    opacity: 1;
+  }
+  100% {
+    background-position: 200% 200%;
+    opacity: 1;
   }
 }
