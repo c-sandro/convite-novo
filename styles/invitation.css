@@ -218,7 +218,7 @@ html, body {
   /* remove o deslocamento de -60px que descentralizava o título no celular */
   .text-line.header-text-line {
     font-size: 2.2rem;
-    transform: translateY(15px) translateX(0);
+    transform: translateY(15px) translateX(-20px);
   }
 
   .text-line.header-text-line.visible {
@@ -241,6 +241,64 @@ html, body {
 
   .spider-icon {
     height: 1.3em;
+    transform: translateX(10px) translateY(-5px);
+  }
+
+  .spider-icon.flip {
+    transform: scaleX(-1) translateX(10px) translateY(-5px) rotateZ(15deg);
+  }
+}
+
+/* celulares pequenos ou deitados */
+@media (max-height: 500px) and (orientation: landscape) {
+  .text-container {
+    /* Libera a rolagem por toque na tela */
+    overflow-y: auto;
+    pointer-events: auto;
+
+    /* Muda o alinhamento para o topo para não cortar a primeira linha */
+    justify-content: flex-start;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  /* Papel flutuante inicial menor para caber na tela deitada */
+  .floating-paper {
+    width: 120px;
+  }
+
+  /* Redução de fontes para caber melhor em telas baixas */
+  .text-line {
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+  }
+
+  .text-line.header-text-line {
+    font-size: 1.8rem;
+    transform: translateY(15px) translateX(0);
+  }
+
+  .text-line.header-text-line.visible {
+    transform: translateY(0) translateX(0);
+  }
+
+  .text-line.big-text-line {
+    font-size: 1.15rem;
+  }
+
+  /* Reduz os espaçamentos grandes entre seções */
+  .text-line.padding-text-line {
+    padding-bottom: 0.6rem;
+  }
+
+  /* Ajuste dos ícones */
+  .blood-icon {
+    height: 1.1em;
+    transform: translateX(10px) translateY(-5px);
+  }
+
+  .spider-icon {
+    height: 1.1em;
     transform: translateX(10px) translateY(-5px);
   }
 
