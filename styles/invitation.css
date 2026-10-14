@@ -95,11 +95,15 @@ html, body {
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start; 
   align-items: center;
-
+  overflow-y: auto;
+  
   text-align: center;
   pointer-events: none;
+}
+.text-container.active {
+  pointer-events: auto;
 }
 
 .text-line {
@@ -144,6 +148,10 @@ html, body {
   font-size: clamp(1.5rem, 4vw, 2.5rem);
 }
 
+.text-line.small-text-line{
+  font-size: clamp(0.75rem, 2vw, 1.25rem);
+}
+
 .text-line.padding-text-line{
   padding-bottom: 2rem;
 }
@@ -174,7 +182,7 @@ html, body {
   margin-top: auto;
 
   font-size: clamp(0.65rem, 1.8vw, 0.85rem);
-  padding-top: 2rem;
+  padding-top: 3rem;
   padding-bottom: 0.8rem;
 
   opacity: 0;
@@ -182,7 +190,7 @@ html, body {
   user-select: none;
 }
 .site-footer.text-line.visible {
-  opacity: .8;
+  opacity: .75;
 }
 
 /* icones no texto */
@@ -214,10 +222,8 @@ html, body {
 @media (max-width: 768px) {
   /* rolagem caso as linhas do convite excedam a altura da tela */
   .text-container {
-    overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     pointer-events: none; /* permite rolar com o toque no celular */
-    justify-content: flex-start; /* evita que o topo do texto seja cortado */
   }
   .text-container.active {
     pointer-events: auto;
@@ -356,11 +362,9 @@ html, body {
 @keyframes continuousScroll {
   0% {
     background-position: 0 0;
-    opacity: 1;
   }
   100% {
     background-position: 200% 200%;
-    opacity: 1;
   }
 }
 
